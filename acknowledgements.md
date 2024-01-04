@@ -13,3 +13,4 @@ course, which is licensed under
 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="external noreferrer">Creative Commons BY-NC-SA 4.0</a>.
 This in itself is based on material from <a href="https://gge-ucd.github.io/R-DAVIS/index.html" target="_blank" rel="external noreferrer">UC Davis's R-DAVIS course</a>,
 which draws heavily on <a href="https://datacarpentry.org/R-ecology-lesson/" target="_blank" rel="external noreferrer">Carpentries</a> R lessons.
+The penguin artwork is from Allison Horst <a href="https://allisonhorst.com/" target="_blank" rel="external noreferrer">@allison_horst</a>.

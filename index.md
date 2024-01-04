@@ -108,4 +108,9 @@ This workshop is brought to you by:
 - The University of Exeter <a href="https://www.exeter.ac.uk/research/doctoralcollege/early-career-researchers/traininganddevelopment/rdprogramme/" target="_blank" rel="external noreferrer">Researcher Development Programme</a>
 - The University of Exeter <a href="https://www.exeter.ac.uk/research/doctoralcollege/" target="_blank" rel="external noreferrer">Doctoral College</a>
 
-This course has been adapted from TODO
+The course material is adapted from Eliza Wood's
+<a href="https://liza-wood.github.io/tidyverse_intro/" target="_blank" rel="external noreferrer">Tidyverse: Data wrangling & visualization</a>
+course, which is licensed under
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="external noreferrer">Creative Commons BY-NC-SA 4.0</a>.
+This in itself is based on material from <a href="https://gge-ucd.github.io/R-DAVIS/index.html" target="_blank" rel="external noreferrer">UC Davis's R-DAVIS course</a>,
+which draws heavily on <a href="https://datacarpentry.org/R-ecology-lesson/" target="_blank" rel="external noreferrer">Carpentries</a> R lessons.

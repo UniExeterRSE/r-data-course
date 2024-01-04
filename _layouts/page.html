@@ -34,31 +34,31 @@
       <footer class="inner">
         {% include prev_next_navbar.html %}
         <p class="copyright">The material on this page is © University of Exeter.</p>
+        <!-- Case where material adapted from another licensed source -->
         {% if page.adapted %}
-        {% if page.attrib_custom %}
-        <p class="copyright">
-          {{ page.attrib_custom }}
-        </p>
+        <!-- Case where custom attribution used -->
+          {% if page.attrib_custom %}
+            <p class="copyright">
+              {{ page.attrib_custom }}
+            </p>
+          <!-- Case where default attribution used -->
+          {% else %}
+            <p class="copyright">
+              This material is made available under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons BY-NC-SA</a> licence. 
+              It has been adapted from <a href="{{ page.attrib_link }}">{{ page.attrib_name }}</a>
+              which is licensed under <a href="{{ page.attrib_license_link }}">{{ page.attrib_license }}</a>.
+            </p>
+          {% endif %}
+        <!-- Case where page is original content -->
         {% else %}
-        <p class="copyright">Material other than code snippets and example
-          programs is licensed under <a href ="https://creativecommons.org/licenses/by/4.0/">Creative Commons BY 4.0</a>. 
-          It has been adapted from <a href="{{ page.attrib_link }}">{{ page.attrib_name }}</a>
-          which is © {{ page.attrib_copywrite }} and licensed under <a href ={{ page.attrib_license_link }}>{{ page.attrib_license }}</a>.
-        </p>
+          <p class="copyright">
+            This material is made available under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons BY-NC-SA</a> licence.
+          </p>
         {% endif %}
-        {% else %}
-        <p class="copyright">Material other than code snippets and example
-          programs is licensed under <a href ="https://creativecommons.org/licenses/by/4.0/">Creative Commons BY 4.0</a>.
-        </p>
-        {% endif %} 
-        <p class="copyright">The code snippets and example programs on this page
-          are MIT licensed, according to the licence notice found in this website's
-          <a href="https://github.com/UniExeterRSE/intro-version-control" target="_blank" rel="external noreferrer">code repository</a>.
-        </p>
         {% if site.github.is_project_page %}
-        <p class="copyright">Workshop maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a></p>
+          <p class="copyright">Workshop maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a>.</p>
         {% endif %}
-        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a>.</p>
       </footer>
     </div>
   </body>

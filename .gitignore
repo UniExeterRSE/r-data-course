@@ -14,3 +14,4 @@ _site/
 .Rproj.user
 .Rprofile
 renv/
+*.nb.html

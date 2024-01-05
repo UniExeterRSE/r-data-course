@@ -1,0 +1,12 @@
+---
+title: "Loading data into R"
+output: html_notebook
+---
+
+## Outline
+
+- From a package
+- From CSV file
+  - Into a dataframe
+  - Into a matrix?
+- Other sources (Excel workbook, URL)

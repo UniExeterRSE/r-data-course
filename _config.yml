@@ -36,6 +36,7 @@ defaults:
 # Build settings
 theme: jekyll-theme-slate
 exclude:
+  - R_notebooks/
   - Gemfile
   - Gemfile.lock
   - node_modules

@@ -1,0 +1,15 @@
+---
+title: "Interlude: working with strings and dates"
+output: html_notebook
+---
+
+## Outline
+
+- Working with strings
+  - Splitting / pasting strings
+  - Extracting substrings
+  - Cleaning strings
+- Working with dates
+  - Converting from strings
+  - Accessor functions
+  - Basic arithmetic

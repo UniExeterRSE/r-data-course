@@ -1,0 +1,10 @@
+---
+title: "Introducing the Tidyverse"
+output: html_notebook
+---
+
+## Outline
+
+- What is the Tidyverse?
+- Dataframes (printing)
+- Tidy format

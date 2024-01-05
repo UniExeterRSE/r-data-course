@@ -9,3 +9,8 @@ Gemfile.lock
 
 # Built artifacts
 _site/
+
+# R project
+.Rproj.user
+.Rprofile
+renv/

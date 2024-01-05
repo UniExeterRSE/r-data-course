@@ -1,0 +1,10 @@
+---
+title: "Reshaping data"
+output: html_notebook
+---
+
+## Outline
+
+- Matrices
+- Converting to/from tidy format
+- Completion

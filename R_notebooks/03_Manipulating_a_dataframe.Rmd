@@ -1,0 +1,11 @@
+---
+title: "Manipulating a dataframe"
+output: html_notebook
+---
+
+## Outline
+
+- Sub-setting data
+- Creating new variables
+- Sorting
+- Summarising data

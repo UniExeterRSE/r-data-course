@@ -1,0 +1,16 @@
+---
+title: "Summary and next steps"
+output: html_notebook
+---
+
+## Outline
+
+- Review of Tidyverse philosophy
+  - Tidy data
+  - Common interfaces
+  - Functional style
+- Next steps / further resources
+  - Cheat sheets
+  - Package help and vignettes
+  - Visualsation with `ggplot2`
+  - R for Data Science book

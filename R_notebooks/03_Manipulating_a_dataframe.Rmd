@@ -1,5 +1,5 @@
 ---
-title: "Manipulating a dataframe"
+title: "Manipulating a dataframe with `dplyr`"
 output: html_notebook
 ---
 
@@ -9,3 +9,207 @@ output: html_notebook
 - Creating new variables
 - Sorting
 - Summarising data
+
+
+## Introduction
+
+The package `dplyr` from the Tidyverse contains functions for manipulating
+dataframes. We will use the `penguins` dataset contained in the `palmerpenguins`
+package. Note that this data is already in tidy format.
+
+```{r}
+library(palmerpenguins)  # loads `penguins` data
+head(penguins)
+```
+
+
+## Sub-setting data
+
+For taking subsets of data, we can use the functions `select` and
+`filter` from `dplyr`:
+
+- `dplyr::select` is used to keep only specified columns of the dataframe, i.e. to
+  'select' certain variables from the data.
+- `dplyr::filter` is used to keep rows that meet some specified condition, i.e. to
+  'filter' the observations in the data.
+
+
+### Selecting columns
+
+To use `select`, name the columns to keep after supplying the dataframe
+(or tibble), like so:
+
+```
+dplyr::select(data, column1, column2, ...)
+```
+
+**Note**: We _don't_ use strings to specify the columns! Instead, we write them
+as if they were variables e.g. `dplyr::select(data, column1)` instead of
+`dplyr::select(data, "column1")`.
+
+Let's first check the column names in our tibble:
+
+```{r}
+colnames(penguins)
+```
+
+Now let's select the species, year, sex, and body mass columns:
+
+```{r}
+# Select species, year, sex, and body mass
+penguins_selected <- dplyr::select(penguins, species, year, sex, body_mass_g)
+
+head(penguins_selected)
+```
+
+The `select` function can also be used to _remove_ columns by using the `-`
+operator. For example, we may want to remove only two columns, island and year:
+
+```{r}
+# Remove the island and year columns by using `-`.
+penguins_deselected <- dplyr::select(penguins, -island, -year)
+
+# Take a look at the columns
+colnames(penguins_deselected)
+```
+
+### Filtering rows
+
+The `filter` function from `dplyr` is used to keep rows from a dataframe/tibble
+that meet a _predicate condition_ in terms of the column values, i.e. a
+statement that is either `TRUE` or `FALSE`.
+
+
+#### Comparitive operators
+
+One way to create  predicate conditions is to use the
+[comparative operators](https://www.w3schools.com/r/r_operators.asp), which
+should be familiar:
+
+```
+x == y   : equal
+x != y   : not equal
+x > y    : greater than
+x < y    : less than
+x >= y   : greater than or equal
+x <= y   : less than or equal
+```
+
+For example, suppose we want to keep all penguin data only from the year
+2008. In base R, we could accomplish this by indexing on a boolean vector
+created using the `==` operator:
+
+```{r}
+# Create boolean vector indicating where year = 2008
+is_year_2008 <- penguins$year == 2008
+head(is_year_2008, n = 75)
+```
+
+```{r}
+# Index on this vector
+head(penguins[is_year_2008,])
+```
+
+The `filter` function works by specifying the predicate condition for filtering
+in terms of the column names, like so:
+
+```
+dplyr::filter(data, condition)  # keep rows satisfying condition
+```
+
+So to filter the penguins data to keep only the 2008 observations:
+
+```{r}
+penguins_2008 <- dplyr::filter(penguins, year == 2008)
+head(penguins_2008)
+```
+
+
+#### Logical operators
+
+We can build more complicated predicate conditions by using the
+[logical operators](https://www.w3schools.com/r/r_operators.asp) on columns:
+
+```
+A & B   : A AND B   e.g. col1 == 2 & col2 == 10
+A | B   : A OR B    e.g. col1 > 2 | col2 != 10
+!A      : NOT A     e.g. !(col1 < 2)
+```
+
+In addition, `filter` allows us to specify multiple AND operations by listing
+out multiple predicate conditions:
+
+```
+dplyr::filter(data, condition1, condition2, ...)  # keep rows satisfying
+                                                  # condition1 AND condition2 AND ...
+```
+
+Some examples on the penguin data:
+
+```{r}
+# Observations of male penguins from the year 2008:
+print(dplyr::filter(penguins, sex == "male" & year == 2008))  # using &
+print(dplyr::filter(penguins, sex == "male", year == 2008))  # listing multiple conditions in filter
+
+# Observations of penguins with bill length > 40mm or bill depth < 20mm 
+print(dplyr::filter(penguins, bill_length_mm > 40 | bill_depth_mm < 20))
+
+# Observations except those of male penguins on the island of Biscoe
+print(dplyr::filter(penguins, !(sex == "male" & island == "Biscoe")))
+```
+
+
+#### Filtering missing values
+
+There are other functions we can use to evaluate columns and get a true/false
+output. An important one is `is.na()`. This function evaluates a column and
+reports back a `TRUE` value when there is an `NA` in that column's row. For
+example, we can use the `head()` function to look at the top 6 values of the
+`sex` column, and see that there is an NA in the fourth row.
+
+```{r}
+head(penguins$sex)
+```
+
+The `is.na` function evaluates the whole column and gives us `TRUE`s whenever it
+sees an NA. Not surprisingly, we see a `TRUE` in the fourth observation.  
+
+```{r}
+head(is.na(penguins$sex))
+```
+
+Since `is.na()` gives us a `TRUE`/`FALSE` vector, we can use it with `filter`.
+The following gives us all rows where the sex column has missing data (i.e. is
+set to `NA`):
+
+```{r}
+dplyr::filter(penguins, is.na(sex))
+```
+
+To do the reverse, i.e. keep only the observations where the sex value is not
+missing, combine `is.na` with the NOT operator:
+
+```{r}
+dplyr::filter(penguins, !is.na(sex))
+```
+
+### Exercise: subsetting data
+
+Write code to extract data for Gentoo penguins with weight between 4.8kg and
+5.2kg (inclusive). Only keep the species, sex and body mass columns in the
+output. Give the numbers of resulting observations for male penguins, female
+penguins and penguins with unknown sex.
+
+```{r}
+penguins_subset <- dplyr::filter(penguins,
+                                 species == "Gentoo",
+                                 4800 <= body_mass_g & body_mass_g <= 5200)
+penguins_subset <- dplyr::select(penguins_subset, species, sex, body_mass_g)
+penguins_subset
+```
+
+```{r}
+cat("Number of male penguins:", nrow(dplyr::filter(penguins_subset, sex == "male")), "\n")
+cat("Number of female penguins:", nrow(dplyr::filter(penguins_subset, sex == "female")), "\n")
+cat("Number of penguins of unknown sex:", nrow(dplyr::filter(penguins_subset, is.na(sex))), "\n")
+```

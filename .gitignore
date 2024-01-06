@@ -13,5 +13,6 @@ _site/
 # R project
 .Rproj.user
 .Rprofile
+.Rhistory
 renv/
 *.nb.html

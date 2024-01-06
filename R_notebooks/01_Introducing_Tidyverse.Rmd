@@ -9,6 +9,7 @@ output: html_notebook
 -   Dataframes / tibbles
 -   Tidy data format
 
+
 ## What is the Tidyverse?
 
 The Tidyverse is self-described as:
@@ -54,6 +55,7 @@ part of the 'non-core' Tidyverse:
 -   `magrittr`: Operators to make for more readable data manipulation (such as
     the 'pipe' operator `%>%`).
 
+
 ## Dataframes / tibbles
 
 The key data structure that Tidyverse packages are designed to work with is the
@@ -64,6 +66,19 @@ Tidyverse packages, you'll inevitably come across the term *tibble*. This is
 essentially the same thing as a dataframe, although there are some minor
 differences. For the purposes of this course, you can consider dataframes and
 tibbles to be interchangeable and mentally think of them as 'the same thing'.
+
+To demonstrate this, let's consider the Palmer Station penguins data related to
+three species of Antarctic penguins from Horst, Hill, and Gorman [^1]. We'll
+work with this dataset throughout this course. The data contains size
+measurements for male and female adult foraging Adélie, Chinstrap, and Gentoo
+penguins observed on islands in the Palmer Archipelago near Palmer Station,
+Antarctica between 2007-2009. Data were collected and made available by
+Dr Kristen Gorman and the Palmer Station Long Term Ecological Research (LTER)
+Program. You can read more about the package on the
+[`palmerpenguins` documentation website](https://allisonhorst.github.io/palmerpenguins/index.html). 
+
+To load the dataset, we just import the `palmerpenguins` package and look at
+the `penguins` object.
 
 ```{r}
 library(palmerpenguins)  # loads `penguins` object
@@ -77,6 +92,7 @@ it is) is a tibble, indicated by the `"tbl_df"` in the output below:
 class(penguins)
 ```
 
+
 ## Tidy data
 
 *Tidy data* is a convention that specifies how to arrange our data into a table.
@@ -89,10 +105,8 @@ It states that
 Packages in the Tidyverse are designed to work with tidy data.
 
 You can read more about the tidy data format in [Hadley Wickham's Tidy
-Data](https://doi.org/10.18637/jss.v059.i10) paper[^1].
+Data](https://doi.org/10.18637/jss.v059.i10) paper[^2].
 
-[^1]: Wickham, H. (2014). Tidy Data. *Journal of Statistical Software*,
-    *59*(10), 1–23. <https://doi.org/10.18637/jss.v059.i10>
 
 ### Tidy data: Example
 
@@ -126,6 +140,7 @@ have a separate column for the species:
 
 : Weights of pets by year (tidy format)
 
+
 ## Acknowledgement
 
 The material in this notebook is adapted from Eliza Wood's [Tidyverse: Data
@@ -136,4 +151,12 @@ based on material from [UC Davis's R-DAVIS
 course](https://gge-ucd.github.io/R-DAVIS/index.html), which draws heavily on
 [Carpentries](https://datacarpentry.org/R-ecology-lesson/) R lessons.
 
+
 ## Footnotes
+
+[^1]: Horst AM, Hill AP, Gorman KB (2020). palmerpenguins: Palmer Archipelago
+      (Antarctica) penguin data. R package version 0.1.0.
+      <https://allisonhorst.github.io/palmerpenguins/>. doi: 10.5281/zenodo.3960218.
+
+[^2]: Wickham, H. (2014). Tidy Data. *Journal of Statistical Software*,
+    *59*(10), 1–23. <https://doi.org/10.18637/jss.v059.i10>

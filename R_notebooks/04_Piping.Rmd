@@ -1,0 +1,9 @@
+---
+title: "Piping and functional style"
+output: html_notebook
+---
+
+## Outline
+
+- The functional philosophy of Tidyverse
+- Piping operator

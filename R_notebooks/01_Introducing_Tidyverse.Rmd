@@ -48,12 +48,8 @@ plotting and modelling. The benefits of the Tidyverse include:
 -   Built around a consistent philosophy of how to structure data for analysis
     (the 'tidy' data format).
 
-**Note**: We'll also be using a couple of other very popular packages that are
-part of the 'non-core' Tidyverse:
-
--   `lubridate`: Working with dates.
--   `magrittr`: Operators to make for more readable data manipulation (such as
-    the 'pipe' operator `%>%`).
+**Note**: We'll also be using another very popular package for working with
+timestamps, called `lubridate`, that is part of the 'non-core' Tidyverse.
 
 
 ## Dataframes / tibbles

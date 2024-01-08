@@ -267,3 +267,37 @@ penguins <- dplyr::mutate(penguins, id = as.character(1:nrow(penguins)))
 penguins <- dplyr::mutate(penguins, id = 1:nrow(penguins))  # int IDs
 penguins <- dplyr::mutate(penguins, id = as.character(id))  # update column to strings
 ```
+
+
+## Sorting observations
+
+We can sort the rows of data by the value of a particular column using the
+`arrange` function in `dplyr`. By default, the sorting is performed in increasing
+order, although we can use the `desc()` function on the column to sort in
+descending order:
+
+```
+dplyr::arrange(data, col)  # sort rows by ascending order of values from column
+                           # `col`
+
+dplyr::arrange(data, dplyr::desc(col))  # sort rows by descending order of
+                                        # values from column `col`
+```
+
+For example, to sort the `penguins` data by descending value of flipper length:
+
+```{r}
+penguins_sorted_flipper <- dplyr::arrange(penguins, dplyr::desc(flipper_length_mm))
+penguins_sorted_flipper
+```
+
+
+### Exercise: sorting
+
+Sort the `penguins` data by the id column we created in the previous exercise.
+Explain the resulting order on the id column.
+
+```{r}
+penguins_sorted_id <- dplyr::arrange(penguins, id)
+head(dplyr::select(penguins_sorted_id, id, species, year, bill_length_mm))
+```

@@ -213,3 +213,57 @@ cat("Number of male penguins:", nrow(dplyr::filter(penguins_subset, sex == "male
 cat("Number of female penguins:", nrow(dplyr::filter(penguins_subset, sex == "female")), "\n")
 cat("Number of penguins of unknown sex:", nrow(dplyr::filter(penguins_subset, is.na(sex))), "\n")
 ```
+
+
+## Creating new variables
+
+We may often want to make a new column with some updated or transformed value.
+We can use the `mutate` function in `dplyr` for this:
+
+```
+# value1, value2,... are expressions, possibly involving column names
+
+dplyr::mutate(data, new_column1 = value1, new_column2 = value2, ...)
+```
+
+For example, to add a column of IDs for identifying each row in the data:
+
+```{r}
+penguins_with_ids <- dplyr::mutate(penguins, id = 1:nrow(penguins))
+
+# Optional: Put the ID column at the beginning of the dataframe
+penguins_with_ids <- dplyr::relocate(penguins_with_ids, id, .before = species)
+
+head(penguins_with_ids)
+```
+
+Another example: if we wanted to calculate a new value, the ratio of bill length
+to bill depth, we could do the following
+
+```{r}
+dplyr::mutate(penguins, bill_ratio = bill_length_mm / bill_depth_mm)
+```
+
+**Note**: the output of mutate is not just a new column on its own,
+but the whole dataframe with the new column appended. To update `penguins` to
+have the new column, we need to overwrite it:
+
+```{r}
+penguins <- dplyr::mutate(penguins, bill_ratio = bill_length_mm / bill_depth_mm)
+colnames(penguins)
+```
+
+
+### Exercise: creating variables
+
+Update the `penguins` dataframe so that it contains an ID column _with IDs
+represented as strings_.
+
+```{r}
+# Solution 1
+penguins <- dplyr::mutate(penguins, id = as.character(1:nrow(penguins)))
+
+# Solution 2
+penguins <- dplyr::mutate(penguins, id = 1:nrow(penguins))  # int IDs
+penguins <- dplyr::mutate(penguins, id = as.character(id))  # update column to strings
+```

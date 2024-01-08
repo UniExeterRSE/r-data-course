@@ -418,3 +418,14 @@ print(penguins_max_species_avg_mass)
 
 In practice, you don't have to worry about this detail. If you want to get back
 to a plain old tibble/dataframe, use the `dplyr::ungroup` function.
+
+
+## Acknowledgement
+
+The material in this notebook is adapted from Eliza Wood's [Tidyverse: Data
+wrangling & visualization](https://liza-wood.github.io/tidyverse_intro/) course,
+which is licensed under [Creative Commons BY-NC-SA
+4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). This in itself is
+based on material from [UC Davis's R-DAVIS
+course](https://gge-ucd.github.io/R-DAVIS/index.html), which draws heavily on
+[Carpentries](https://datacarpentry.org/R-ecology-lesson/) R lessons.

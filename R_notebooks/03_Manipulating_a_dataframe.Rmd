@@ -256,8 +256,8 @@ colnames(penguins)
 
 ### Exercise: creating variables
 
-Update the `penguins` dataframe so that it contains an ID column _with IDs
-represented as strings_.
+Update the `penguins` dataframe so that it contains an ID column
+_with IDs represented as strings_.
 
 ```{r}
 # Solution 1
@@ -301,3 +301,120 @@ Explain the resulting order on the id column.
 penguins_sorted_id <- dplyr::arrange(penguins, id)
 head(dplyr::select(penguins_sorted_id, id, species, year, bill_length_mm))
 ```
+
+
+## Summarising / aggregating data
+
+Often we want to aggregate data at certain levels to better understand
+differences across groups. For instance, does flipper length differ by species?
+Does body mass change between years?
+
+First, we can use `summarise` on its own, without any grouping, to get a single
+summary about the dataframe. Here are some examples using the body mass variable:
+
+```{r}
+# Count number of observations
+print(dplyr::summarise(penguins, num_rows = dplyr::n()))
+
+# Count number of different years in the data
+print(dplyr::summarise(penguins, num_years = dplyr::n_distinct(year)))
+
+# Get the min and max year
+print(dplyr::summarise(penguins, min_year = min(year), max_year = max(year)))
+
+# calculate the sum of body masses for the whole data frame
+print(dplyr::summarise(penguins, sum_flipper_length_mm = sum(flipper_length_mm)))
+```
+
+If the result is `NA`, it's likely because the column contained missing values.
+We include the `na.rm = TRUE` optional argument to tell `summarise` to remove
+`NA`s before calculating:
+
+```{r}
+# remove missing values
+dplyr::summarise(penguins, sum_flipper_length_mm = sum(flipper_length_mm, na.rm = TRUE))
+```
+
+More generally, we can compute summaries for subgroups of the data by combining
+the `group_by` and `summarise` (or `summarize`) functions in `dplyr`. The steps
+to do this are:
+
+1. First use `group_by` to declare the column (or columns) that you want to
+   group the data by.
+2. Then use `summarise` to actually do the summarising on each of the subgroups
+   from step 1. The resulting dataframe will have one summary per subgroup.
+
+For example, to get the average flipper length of each sex:
+
+```{r}
+# First group the data by sex
+penguins_grouped_by_sex <- dplyr::group_by(penguins, sex)
+
+# Then find the mean flipper length for each sex
+dplyr::summarise(penguins_grouped_by_sex, mean_flipper_length_mm = mean(flipper_length_mm, na.rm = TRUE))
+```
+
+
+These functions are powerful. We can group by multiple columns at once to create
+pairwise groups. As we saw above, we can also create several summary variables
+at the same time:
+
+```
+dplyr::group_by(data, col1, col2, ...)  # group by combinations of values in
+                                        # col1, col2, ...
+
+# Compute multiple summaries on the same data
+dplyr::summarise(grouped_data, summary1 = <...>, summary2 = <...>, ...)
+```
+
+
+### Exercise: grouping and summarising
+
+Create a summary dataframe that gives the mean, range (i.e. `max - min`)
+and standard deviation of the body mass for each species / sex combination, as
+well as the number of observations in each group.
+
+```{r}
+penguins_grouped <- dplyr::group_by(penguins, species, sex)
+dplyr::summarise(penguins_grouped,
+                 mean_body_mass_g = mean(body_mass_g, na.rm = TRUE),
+                 sd_body_mass_g = sd(body_mass_g, na.rm = TRUE),
+                 range_body_mass_g = max(body_mass_g, na.rm = TRUE) - min(body_mass_g, na.rm = TRUE))
+```
+
+
+### An unimportant detail: grouped dataframes
+
+`dplyr::group_by` returns a 'grouped dataframe' (`dplyr::grouped_df`). These
+behave just like tibbles/dataframes except they have some extra information
+about the grouping attached to them.
+
+When you group by multiple columns, the result of `summarise` will typically
+also be a grouped dataframe. Usually, the groups are given by all columns except
+the last one in the grouped dataframe supplied to `summarise`. By default, you
+get a console message telling you on which columns the output is grouped by (see
+the result of the exercise above).
+
+The upshot of this is that it allows us to do successive summaries without
+having to keep regrouping the data. For example, the code below will produce a
+'max of averages':
+
+```{r}
+penguins_grouped <- dplyr::group_by(penguins, sex, species)  # grouped by sex and species
+
+# Average mass for each species / sex combination
+# Result is grouped by sex (see console output)
+penguins_grouped_mass <- dplyr::summarise(penguins_grouped,
+                                          mean_body_mass_g = mean(body_mass_g, na.rm = TRUE))
+print(penguins_grouped_mass)
+
+# Max of the average mass for each species
+penguins_max_species_avg_mass <- dplyr::summarise(
+  penguins_grouped_mass,
+  max_species_avg_body_mass_g = max(mean_body_mass_g, na.rm = TRUE)
+  )
+print(penguins_max_species_avg_mass)
+```
+
+In practice, you don't have to worry about this detail. If you want to get back
+to a plain old tibble/dataframe, use the `dplyr::ungroup` function.

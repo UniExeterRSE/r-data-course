@@ -11,8 +11,7 @@ output: html_notebook
   - Extracting substrings
 - Working with dates
   - Converting from strings
-  - Accessor functions
-  - Basic arithmetic
+  - Accessing timestamp components
 
 
 ## Introduction
@@ -317,6 +316,120 @@ experiments |>
   dplyr::filter(Has_run_of_5) |>
   nrow()
 ```
+
+## Working with dates
+
+We have weather data from the Palmer Station in Antarctica from 1989 - 2019,
+where data are available for each day.
+
+```{r}
+weather <- read.csv("./data/PalmerStation_Daily_Weather.csv")
+str(weather)
+```
+
+However, the structure of the data above indicate that the first variable, Date,
+is a 'character'. This means that R is not reading these dates as numbers, and
+so it may be hard to manipulate them any further (e.g. extracting certain
+years).
+
+```{r}
+head(weather$Date)
+class(weather$Date)
+```
+
+(**Note**: if we'd used `read_csv` from the `readr` package then these would
+automatically have been coerced into dates. We're avoiding this for now to
+demonstrate how to convert raw strings into dates.)
+
+We'll use the `lubridate` package (loaded in when we load in `tidyverse`)
+to convert these variables into dates and create a column for the year.
+
+
+### Converting from strings
+
+The `lubridate` package has very intuitive function names and argument
+structures. For instance, you can convert a character type into a date type by
+using a function with letters representing the date format. In `lubridate`,
+y = year, m = month, d = day, h = hour, m = minute, s = second, etc.
+
+(You can see all of these formats by using the auto-complete box in RStudio,
+e.g. to see all functions starting with 'y', begin typing `lubridate::y`.)
+
+We can see that our data is formatted in the year-month-day format, and so we
+can use the `ymd` function to indicate to R what format we want it to detect as
+it converts characters to dates. If we use this function and assign the output
+to a date vector, we can then evaluate the class to see that it is a date.  
+
+```{r}
+date_vector <- lubridate::ymd(weather$Date)
+class(date_vector)
+```
+
+Remember that manipulating a column does not mean it automatically saves into
+the dataframe. Instead, we need to remember to write (or overwrite) that column
+into our dataframe. Remember that we can use the mutate function to do this,
+where we can overwrite out date column:
+
+```{r}
+weather <- weather |>
+  dplyr::mutate(Date = lubridate::ymd(Date))
+
+class(weather$Date)
+```
+
+
+### Accessing timestamp components
+
+Now that R recognizes these as dates, we can extract certain date-related
+features, such as the year, month, and day. The `lubridate` package has functions
+conveniently named `year`, `month`, `day` that can be used with a date argument,
+and that element of the date will be extracted. For example:
+
+```{r}
+weather <- weather |>
+  dplyr::mutate(Year = lubridate::year(Date))
+
+head(weather) |>
+  dplyr::select(Date, Year)
+```
+
+
+#### Exercise: working with dates  
+
+We are going to review our basic wrangling skills to prepare the Palmer Station
+weather data to merge with the penguins data.
+
+We would like to merge a _summary_ of the weather data with the penguins. For
+this summary, we want the weather data summarized by year, rather than by day
+(as it currently is). Then per year, we want to know the maximum, minimum, and
+average temperatures. Create this summary table called `weather_summary`.
+
+```{r}
+weather_summary <- weather |> 
+  dplyr::group_by(Year) |> 
+  dplyr::summarize(Average_temp = mean(Temperature.Average..C., na.rm = TRUE),
+                   Max_temp = max(Temperature.High..C., na.rm = TRUE),
+                   Min_temp = min(Temperature.Low..C., na.rm = TRUE))
+
+```
+
+Finally, we'll write the summary weather data to a new CSV file
+`./data/weather_annual.csv`.
+
+```{r}
+readr::write_csv(weather_summary, "./data/weather_annual.csv", na = "")
+```
+
+
+## Acknowledgement
+
+The material in this notebook is adapted from Eliza Wood's [Tidyverse: Data
+wrangling & visualization](https://liza-wood.github.io/tidyverse_intro/) course,
+which is licensed under [Creative Commons BY-NC-SA
+4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). This in itself is
+based on material from [UC Davis's R-DAVIS
+course](https://gge-ucd.github.io/R-DAVIS/index.html), which draws heavily on
+[Carpentries](https://datacarpentry.org/R-ecology-lesson/) R lessons.
 
 
 ## Footnotes

@@ -147,7 +147,7 @@ that contain doubles. This is because matching in the join will be done
 by an exact equality test on the doubles, which can create strange
 results due to numerical imprecision and be difficult to reproduce. Example: in
 the following, two doubles that look distinct are considered equal to
-1 / 3 = 0.333..., so are treated as 
+`1 / 3 = 0.333...`, so 'match' on the `1 / 3` entry in data frame `x`.
 
 ```{r}
 x <- data.frame(colA = c(1 / 3, 2 / 3),

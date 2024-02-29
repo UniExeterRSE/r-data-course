@@ -225,6 +225,8 @@ To paste columns back together with a custom separator, we can use the
 ```{r}
 stringr::str_c("foo", "bar", "baz", sep = " -- ")  # foo -- bar -- baz
 ```
+
+
 ### Exercise: splitting and concatenating columns
 
 Use `tidyr::separate` and `stringr:str_c` to create a unique experiment ID by
@@ -319,7 +321,7 @@ experiments |>
 
 ## Working with dates
 
-We have weather data from the Palmer Station in Antarctica from 1989 - 2019,
+We have weather data from the Palmer Station in Antarctica from 1989 - 2019[^1],
 where data are available for each day.
 
 ```{r}
@@ -401,8 +403,9 @@ weather data to merge with the penguins data.
 
 We would like to merge a _summary_ of the weather data with the penguins. For
 this summary, we want the weather data summarized by year, rather than by day
-(as it currently is). Then per year, we want to know the maximum, minimum, and
-average temperatures. Create this summary table called `weather_summary`.
+(as it currently is). Specifically, we want to know the maximum, minimum, and
+average temperatures for each year. Create this summary table called
+`weather_summary`.
 
 ```{r}
 weather_summary <- weather |> 

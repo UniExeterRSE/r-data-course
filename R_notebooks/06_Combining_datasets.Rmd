@@ -162,8 +162,9 @@ dplyr::left_join(x, y, by = "colA")
 
 ### Exercise: joining penguin and weather data
 
-Recall the penguin data from the `palmerpenguins` package and the annual weather
-data we created at the end of workbook `05_Strings_and_dates.Rmd`:
+Recall the penguin data from the `palmerpenguins` package. We're going to join
+this with some annual weather data, taken from the Palmer Station in Antarctica
+from 1989 - 2019[^1].
 
 ```{r}
 library(palmerpenguins)  # loads `penguins` data
@@ -201,3 +202,13 @@ which is licensed under [Creative Commons BY-NC-SA
 based on material from [UC Davis's R-DAVIS
 course](https://gge-ucd.github.io/R-DAVIS/index.html), which draws heavily on
 [Carpentries](https://datacarpentry.org/R-ecology-lesson/) R lessons.
+
+
+## Footnotes
+
+[^1]: The dataset was derived from the following dataset: Palmer Station
+      Antarctica LTER. 2023. Daily weather averages for Palmer
+      Station, Antarctica (1989-2023) ver 9. Environmental Data Initiative.
+      https://doi.org/10.6073/pasta/3eefb45dbfb784c3cabe3690ea46fe9e (Accessed
+      2024-01-08). See the README in the data folder accompanying these
+      notebooks for more details.

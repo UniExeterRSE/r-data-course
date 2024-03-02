@@ -20,14 +20,15 @@ The Tidyverse is self-described as:
 >
 > — <https://www.tidyverse.org/>
 
-When you install the `tidyverse` package, you install a suite of 9 packages (at
-the time of writing). These are as follows; we've marked the ones this course
+When you install the `tidyverse` package, you install a suite of packages. These
+include the following packages; we've marked the ones this course
 will introduce with a ☺:
 
 -   ☺ `readr`: Load 'rectangular' data into an R session (e.g. CSV files).
 -   ☺ `dplyr`: Manipulate data (filtering, computing summaries, etc.)
 -   ☺ `tidyr`: Reshape data (e.g. into 'tidy' format).
 -   ☺ `stringr`: Working with strings.
+-   ☺ `lubridate`: Working with dates
 -   `ggplot2`: Visualise data.
 -   `tibble`: A modern refresh of the core R dataframe, used throughout
     Tidyverse packages.
@@ -47,9 +48,6 @@ plotting and modelling. The benefits of the Tidyverse include:
     when working with data.
 -   Built around a consistent philosophy of how to structure data for analysis
     (the 'tidy' data format).
-
-**Note**: We'll also be using another very popular package for working with
-timestamps, called `lubridate`, that is part of the 'non-core' Tidyverse.
 
 
 ## Dataframes / tibbles

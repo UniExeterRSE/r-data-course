@@ -1,5 +1,5 @@
 ---
-title: "Combining datasets"
+title: "Combining datasets with `dplyr`"
 output: html_notebook
 ---
 

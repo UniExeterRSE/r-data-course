@@ -1,5 +1,5 @@
 ---
-title: "Reshaping data"
+title: "Reshaping data with `tidyr`"
 output: html_notebook
 ---
 

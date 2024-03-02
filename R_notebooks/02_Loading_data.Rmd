@@ -1,12 +1,12 @@
 ---
-title: "Loading data into R"
+title: "Loading data into R with `readr`"
 output: html_notebook
 ---
 
 ## Outline
 
 - Loading data from a csv file
-- Other sources (Excel workbook, URL)
+- Other file formats (Excel workbook, Google Sheets)
 
 
 ## Introduction

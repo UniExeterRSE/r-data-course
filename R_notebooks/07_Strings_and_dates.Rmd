@@ -1,5 +1,5 @@
 ---
-title: "Working with strings and dates"
+title: "Working with strings and dates with `stringr` and `lubridate`"
 output: html_notebook
 ---
 

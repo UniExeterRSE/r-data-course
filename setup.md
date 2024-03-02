@@ -6,12 +6,13 @@ title: Installation Guide
 In order to fully participate in this course, you should make sure you
 have the following in place **before** the first workshop.
 
-- Install R, version 4.1 or later. You can download the latest version for
-  a variety of operating systems from
+- Install R, version 4.1 or later. You can download this from the University's
+  Company Portal software repository. Alternatively, visit
   <a href="https://cran.rstudio.com" target="_blank" rel="external noreferrer">https://cran.rstudio.com</a>,
   or adopt whatever method you usually use.
   
-- Install RStudio desktop. This can be downloaded from
+- Install RStudio desktop. You can download this from the University's
+  Company Portal software repository. Alternatively, visit
   <a href="https://posit.co/download/rstudio-desktop/" target="_blank" rel="external noreferrer">https://posit.co/download/rstudio-desktop/</a>.
   We will use RStudio to work with R notebooks throughout the course. If you have
   another way of working with R notebooks that you prefer, then you are welcome

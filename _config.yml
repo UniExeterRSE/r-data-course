@@ -6,7 +6,7 @@ description: A course on working with data in R using the Tidyverse.
 n_sessions: 2
 prereq: NA
 url: https://uniexeterrse.github.io/r-data-course
-notes_on: true
+notes_on: false
 
 # Specify that things in the episodes collection should be output.
 collections:

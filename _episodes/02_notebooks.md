@@ -3,12 +3,12 @@ layout: page
 title: "Notebooks"
 order: 2
 session: 1
-length: TODO
+length: 5
 toc: true
 adapted: false
 ---
 
-## Learning Objectives
+## Notebooks
 
 This course will be delivered by working through a series of R notebooks
 within the workshop sessions alongside the course instructor. These notebooks

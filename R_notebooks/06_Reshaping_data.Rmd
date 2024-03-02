@@ -181,6 +181,6 @@ producing and making available their model output.
 
 ## Footnotes
 
-[^1]: Taken from Global Carbon Budget 2023 (Friedlingstein et al., 2023b, ESSD).
+[^1]: Taken from Global Carbon Budget 2023 (Friedlingstein et al., 2023, ESSD).
       Excel workbook obtained from https://globalcarbonbudgetdata.org/downloads/latest-data/National_Fossil_Carbon_Emissions_2023v1.0.xlsx
       (accessed 2024-02-28).

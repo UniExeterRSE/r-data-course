@@ -47,4 +47,20 @@ experiences and viewpoints.
 
 ## Acknowledgement
 
-TODO
+This course was developed by
+[members]({{ site.url }}/acknowledgements.html) of the
+University of Exeter's Research Software Engineering Group
+who are enthusiastic about sharing their skills with the wider research
+community.
+
+If you have benefited in any way from this course and want to support its long term
+sustainability then please take the time to complete our feedback survey,
+recommend it to your colleagues, and enthuse about it to your senior leadership
+team.
+
+This workshop is brought to you by:
+
+- The University of Exeter <a href="https://www.exeter.ac.uk/research/idsai/team/researchsoftwareengineers/" target="_blank" rel="external noreferrer">Research Software Engineering Group</a>
+- The <a href="https://www.exeter.ac.uk/research/idsai/" target="_blank" rel="external noreferrer">Institute of Data Science and Artificial Intelligence</a>
+- The University of Exeter <a href="https://www.exeter.ac.uk/research/doctoralcollege/early-career-researchers/traininganddevelopment/rdprogramme/" target="_blank" rel="external noreferrer">Researcher Development Programme</a>
+- The University of Exeter <a href="https://www.exeter.ac.uk/research/doctoralcollege/" target="_blank" rel="external noreferrer">Doctoral College</a>

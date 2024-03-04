@@ -398,29 +398,17 @@ head(weather) |>
 
 #### Exercise: working with dates  
 
-We are going to review our basic wrangling skills to prepare the Palmer Station
-weather data to merge with the penguins data.
-
-We would like to merge a _summary_ of the weather data with the penguins. For
-this summary, we want the weather data summarized by year, rather than by day
-(as it currently is). Specifically, we want to know the maximum, minimum, and
-average temperatures for each year. Create this summary table called
-`weather_summary`.
+Create a summary of the weather data that gives the maximum, minimum, and
+mean of the average temperatures for each **month** of the year.
 
 ```{r}
-weather_summary <- weather |> 
-  dplyr::group_by(Year) |> 
+weather |>
+  dplyr::mutate(Month = lubridate::month(Date)) |>
+  dplyr::group_by(Month) |> 
   dplyr::summarize(Average_temp = mean(Temperature.Average..C., na.rm = TRUE),
                    Max_temp = max(Temperature.High..C., na.rm = TRUE),
                    Min_temp = min(Temperature.Low..C., na.rm = TRUE))
 
-```
-
-Finally, we'll write the summary weather data to a new CSV file
-`./data/weather_annual.csv`.
-
-```{r}
-readr::write_csv(weather_summary, "./data/weather_annual.csv", na = "")
 ```
 
 

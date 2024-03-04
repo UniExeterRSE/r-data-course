@@ -1,0 +1,18 @@
+# Bundle configuration
+.bundle
+
+# Locally installed Ruby gems
+vendor/
+
+# RubyGems lock file (only track Gemfile)
+Gemfile.lock
+
+# Built artifacts
+_site/
+
+# R project
+.Rproj.user
+.Rprofile
+.Rhistory
+renv/
+*.nb.html

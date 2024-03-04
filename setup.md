@@ -3,15 +3,16 @@ layout: info_page
 title: Installation Guide
 ---
 
-In order to fully participate in this course, you should make sure you
-have the following in place **before** the first workshop.
+In order to fully participate in this course, you should bring a laptop to work
+on during the sessions and make sure you have the following installed on it
+**before** the first session.
 
-- Install R, version 4.1 or later. You can download this from the University's
+- R, version 4.1 or later. You can install this from the University's
   Company Portal software repository. Alternatively, visit
   <a href="https://cran.rstudio.com" target="_blank" rel="external noreferrer">https://cran.rstudio.com</a>,
   or adopt whatever method you usually use.
   
-- Install RStudio desktop. You can download this from the University's
+- RStudio desktop. You can download this from the University's
   Company Portal software repository. Alternatively, visit
   <a href="https://posit.co/download/rstudio-desktop/" target="_blank" rel="external noreferrer">https://posit.co/download/rstudio-desktop/</a>.
   We will use RStudio to work with R notebooks throughout the course. If you have
@@ -23,12 +24,13 @@ have the following in place **before** the first workshop.
   - `palmerpenguins` (This contains a dataset we'll use in examples during the
     course.)
   
-  Note: if you use a package management system, such as
+  If you need a refresher on installing R packages, consult the
+  [resources page]({{ site.url }}/resources.html). (Note: if you use a package
+  management system for managing your R packages, such as
   <a href="https://rstudio.github.io/renv/" target="_blank" rel="external noreferrer">renv</a>,
-  then you may want to create a project-specific environment for the course
-  materials.
+  then you are of course free to use this.)
 
-- Download the course materials. These will be made available from this page
-  by Monday 11 March 2024 at the latest.
+Finally, you will also need to **download the course materials**. These will be
+made available from this page by Monday 11 March 2024 at the latest.
 
 

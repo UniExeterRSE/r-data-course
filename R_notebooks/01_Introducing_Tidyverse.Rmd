@@ -21,10 +21,10 @@ The Tidyverse is self-described as:
 > — <https://www.tidyverse.org/>
 
 When you install the `tidyverse` package, you install a suite of packages. These
-include the following packages; we've marked the ones this course
-will introduce with a ☺:
+include the following; we've marked the ones this course will introduce with a
+☺:
 
--   ☺ `readr`: Load 'rectangular' data into an R session (e.g. CSV files).
+-   ☺ `readr`: Load 'rectangular' data into an R session (e.g. csv files).
 -   ☺ `dplyr`: Manipulate data (filtering, computing summaries, etc.)
 -   ☺ `tidyr`: Reshape data (e.g. into 'tidy' format).
 -   ☺ `stringr`: Working with strings.
@@ -41,7 +41,7 @@ plotting and modelling. The benefits of the Tidyverse include:
 
 -   They are increasingly popular with large user bases (good for support /
     advice).
--   The packages are generally very well-documented.
+-   The packages are generally very well documented.
 -   The packages are designed to work together seamlessly and operate well with
     many other modern R packages.
 -   Provide features to help you write expressive code and avoid common pitfalls
@@ -59,10 +59,10 @@ Actually, this is not quite the whole story. As you read the documentation for
 Tidyverse packages, you'll inevitably come across the term *tibble*. This is
 essentially the same thing as a dataframe, although there are some minor
 differences. For the purposes of this course, you can consider dataframes and
-tibbles to be interchangeable and mentally think of them as 'the same thing'.
+tibbles to be interchangeable and regard them as 'the same thing'.
 
 To demonstrate this, let's consider the Palmer Station penguins data related to
-three species of Antarctic penguins from Horst, Hill, and Gorman [^1]. We'll
+three species of Antarctic penguins from Horst, Hill, and Gorman[^1]. We'll
 work with this dataset throughout this course. The data contains size
 measurements for male and female adult foraging Adélie, Chinstrap, and Gentoo
 penguins observed on islands in the Palmer Archipelago near Palmer Station,
@@ -104,8 +104,8 @@ Data](https://doi.org/10.18637/jss.v059.i10) paper[^2].
 
 ### Tidy data: Example
 
-Suppose we have a pet dog and a pet cat, and we want to study the average weight
-of our pets by year, to see if there is some kind of association between the
+Suppose we have a pet dog and a pet cat and we want to study the average weight
+of them by year, to see if there is some kind of association between the
 species and the trend in weight variation over time. We could represent this in
 a 'matrix-like' format, with the years corresponding to rows and species
 corresponding to columns:
@@ -118,10 +118,10 @@ corresponding to columns:
 
 : Weights of pets by year (non-tidy format)
 
-However, this is not in a tidy format. The variables in our data we're
-interested in studying are the year, animal species and weight, but there the
-columns correspond to the weights for each kind of species. Instead, we should
-have a separate column for the species:
+However, this is not in a tidy format. The variables we're interested in
+studying are the year, animal species and weight, but here the columns
+correspond to the weights for each kind of species. Instead, we should have a
+separate column for the species:
 
 | Year | Species | Weight_kg |
 |:-----|:--------|:----------|

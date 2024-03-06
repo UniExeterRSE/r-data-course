@@ -9,7 +9,7 @@ output: html_notebook
 - Piping operator
 
 
-## The Functional philosophy of Tidyverse
+## The functional philosophy of Tidyverse
 
 The Tidyverse packages are built around a philosophy of having functions that
 work well together. Let's look at some of the functions we've seen so far:
@@ -26,8 +26,8 @@ work well together. Let's look at some of the functions we've seen so far:
 | `dplyr` | `group_by`  | dataframe                     | grouped dataframe             |
 
 Notice how consistent these are in accepting a dataframe as input and returning
-a dataframe (or something like a dataframe). It is this consistency that makes
-it easy to compose functions. 
+a dataframe (or something like a dataframe) as output. It is this consistency
+that makes it easy to compose functions.
 
 In addition, it's important to note that none of the functions we've seen so
 far modify the input dataframe 'in place', they always return a new dataframe.
@@ -74,8 +74,8 @@ In words, the above expression
 3. takes the result of 2 and filters it to keep rows where `colA > 10`,
 
 
-Usually, to make it easier to read, people will put successive pipe calls
-on new lines, like so:
+Usually, people will put successive pipe calls on new lines to make it easier to
+read, like so:
 
 ```
 data |>
@@ -85,7 +85,7 @@ data |>
 
 If we want to store the overall result in a new variable `data_transformed`,
 we can do so by putting the assignment `data_transformed <- ` at the beginning
-of the chain, like so:
+of the chain, like this:
 
 ```
 data_transformed <- data |>

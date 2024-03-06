@@ -24,7 +24,8 @@ a dataframe:
 
 ```{r}
 # Read in ./data/timeseries_data.csv
-
+timeseries <- read.csv("./data/timeseries_data.csv")
+print(timeseries)
 ```
 
 This is fine in a lot of cases, however, note some assumptions have been made.
@@ -54,7 +55,7 @@ assumptions made when parsing the data, and can have better default
 interpretations. For example:
 
 ```{r}
-
+timeseries <- readr::read_csv("./data/timeseries_data.csv")
 ```
 
 Notice how it has explicitly told us that
@@ -92,7 +93,11 @@ So, to specify that we want to read the `Id` column as a string, the `Date`
 column as a date, and the remaining columns as floating point numbers:
 
 ```{r}
-
+timeseries <- readr::read_csv("./data/timeseries_data.csv",
+                              col_types = list(Id = readr::col_character(),
+                                               Date = readr::col_date(),
+                                               .default = readr::col_double()))
+print(timeseries)
 ```
 
 
@@ -106,7 +111,11 @@ Change the above so that the `Id` column is parsed as an integer and the
 `Date` column is parsed as a string.
 
 ```{r}
-
+timeseries <- readr::read_csv("./data/timeseries_data.csv",
+                              col_types = list(Id = readr::col_integer(),
+                                               Date = readr::col_character(),
+                                               .default = readr::col_double()))
+print(timeseries)
 ```
 
 

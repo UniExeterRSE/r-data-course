@@ -28,10 +28,10 @@ head(penguins)
 For taking subsets of data, we can use the functions `select` and
 `filter` from `dplyr`:
 
-- `dplyr::select` is used to keep only specified columns of the dataframe, i.e. to
-  'select' certain variables from the data.
-- `dplyr::filter` is used to keep rows that meet some specified condition, i.e. to
-  'filter' the observations in the data.
+- `dplyr::select` is used to keep only specified **columns** of the dataframe,
+  i.e. to 'select' certain variables from the data.
+- `dplyr::filter` is used to keep **rows** that meet some specified condition,
+  i.e. to 'filter' the observations in the data.
 
 
 ### Selecting columns
@@ -53,7 +53,7 @@ Let's first check the column names in our tibble:
 colnames(penguins)
 ```
 
-Now let's select the species, year, sex, and body mass columns:
+Now let's select the 'species', 'year', 'sex', and 'body mass' columns:
 
 ```{r}
 # Select species, year, sex, and body mass
@@ -63,7 +63,8 @@ head(penguins_selected)
 ```
 
 The `select` function can also be used to _remove_ columns by using the `-`
-operator. For example, we may want to remove only two columns, island and year:
+operator. For example, we may want to remove only two columns, 'island' and
+'year':
 
 ```{r}
 # Remove the island and year columns by using `-`.
@@ -72,6 +73,7 @@ penguins_deselected <- dplyr::select(penguins, -island, -year)
 # Take a look at the columns
 colnames(penguins_deselected)
 ```
+
 
 ### Filtering rows
 
@@ -82,7 +84,7 @@ statement that is either `TRUE` or `FALSE`.
 
 #### Comparitive operators
 
-One way to create  predicate conditions is to use the
+One way to create predicate conditions is to use the
 [comparative operators](https://www.w3schools.com/r/r_operators.asp), which
 should be familiar:
 
@@ -114,7 +116,7 @@ The `filter` function works by specifying the predicate condition for filtering
 in terms of the column names, like so:
 
 ```
-dplyr::filter(data, condition)  # keep rows satisfying condition
+dplyr::filter(data, condition)  # keep rows satisfying 'condition'
 ```
 
 So to filter the penguins data to keep only the 2008 observations:
@@ -141,7 +143,7 @@ out multiple predicate conditions:
 
 ```
 dplyr::filter(data, condition1, condition2, ...)  # keep rows satisfying
-                                                  # condition1 AND condition2 AND ...
+                                                  # 'condition1' AND 'condition2' AND ...
 ```
 
 Some examples on the penguin data:
@@ -217,8 +219,8 @@ cat("Number of penguins of unknown sex:", nrow(dplyr::filter(penguins_subset, is
 
 ## Creating new variables
 
-We may often want to make a new column with some updated or transformed value.
-We can use the `mutate` function in `dplyr` for this:
+We often want to make a new column with some updated or transformed value. We
+can use the `mutate` function in `dplyr` for this:
 
 ```
 # value1, value2,... are expressions, possibly involving column names
@@ -232,7 +234,7 @@ For example, to add a column of IDs for identifying each row in the data:
 penguins_with_ids <- dplyr::mutate(penguins, id = 1:nrow(penguins))
 
 # Optional: Put the ID column at the beginning of the dataframe
-penguins_with_ids <- dplyr::relocate(penguins_with_ids, id, .before = species)
+penguins_with_ids <- dplyr::relocate(penguins_with_ids, id, .before = 1)
 
 head(penguins_with_ids)
 ```
@@ -309,22 +311,25 @@ Often we want to aggregate data at certain levels to better understand
 differences across groups. For instance, does flipper length differ by species?
 Does body mass change between years?
 
+
+### Summarising all the data
+
 First, we can use `summarise` on its own, without any grouping, to get a single
-summary about the dataframe. Here are some examples using the flipper length
-variable:
+summary from all the rows in the dataframe. Here are some examples using the
+flipper length variable:
 
 ```{r}
 # Count number of observations
-print(dplyr::summarise(penguins, num_rows = dplyr::n()))
+dplyr::summarise(penguins, num_rows = dplyr::n())
 
 # Count number of different years in the data
-print(dplyr::summarise(penguins, num_years = dplyr::n_distinct(year)))
+dplyr::summarise(penguins, num_years = dplyr::n_distinct(year))
 
 # Get the min and max year
-print(dplyr::summarise(penguins, min_year = min(year), max_year = max(year)))
+dplyr::summarise(penguins, min_year = min(year), max_year = max(year))
 
-# calculate the sum of body masses for the whole data frame
-print(dplyr::summarise(penguins, sum_flipper_length_mm = sum(flipper_length_mm)))
+# calculate the sum of flipper lengths for the whole data frame
+dplyr::summarise(penguins, sum_flipper_length_mm = sum(flipper_length_mm))
 ```
 
 If the result is `NA`, it's likely because the column contained missing values.
@@ -335,6 +340,9 @@ We include the `na.rm = TRUE` optional argument to tell `summarise` to remove
 # remove missing values
 dplyr::summarise(penguins, sum_flipper_length_mm = sum(flipper_length_mm, na.rm = TRUE))
 ```
+
+
+### Summarising grouped data
 
 More generally, we can compute summaries for subgroups of the data by combining
 the `group_by` and `summarise` (or `summarize`) functions in `dplyr`. The steps
@@ -381,7 +389,7 @@ dplyr::summarise(penguins_grouped,
                  mean_body_mass_g = mean(body_mass_g, na.rm = TRUE),
                  sd_body_mass_g = sd(body_mass_g, na.rm = TRUE),
                  range_body_mass_g = max(body_mass_g, na.rm = TRUE) - min(body_mass_g, na.rm = TRUE),
-                 Grouping_count = dplyr::n())
+                 Group_count = dplyr::n())
 ```
 
 
@@ -402,7 +410,8 @@ having to keep regrouping the data. For example, the code below will produce a
 'max of averages':
 
 ```{r}
-penguins_grouped <- dplyr::group_by(penguins, sex, species)  # grouped by sex and species
+# Group by sex and species
+penguins_grouped <- dplyr::group_by(penguins, sex, species)
 
 # Average mass for each species / sex combination
 # Result is grouped by sex (see console output)

@@ -68,7 +68,8 @@ df2
 Now let's join `df2` onto `df1` by the column `colA`:
 
 ```{r}
-
+df1 |>
+  dplyr::left_join(df2, by = "colA")
 ```
 
 Notice:
@@ -185,7 +186,12 @@ weather data combined. Hint: there are some subtleties to be aware of:
   Examine the kind of data in each dataframe closely and coerce if necessary!
 
 ```{r}
+weather_cleaned <- weather |>
+  dplyr::rename(year = Year) |>
+  dplyr::mutate(year = as.integer(year))
 
+penguins |>
+  dplyr::left_join(weather_cleaned, by = "year")
 ```
 
 

@@ -217,7 +217,7 @@ cat("Number of penguins of unknown sex:", nrow(dplyr::filter(penguins_subset, is
 ```
 
 
-## Creating new variables
+## Creating new variables and renaming variables
 
 We often want to make a new column with some updated or transformed value. We
 can use the `mutate` function in `dplyr` for this:
@@ -254,6 +254,27 @@ have the new column, we need to overwrite it:
 ```{r}
 penguins <- dplyr::mutate(penguins, bill_ratio = bill_length_mm / bill_depth_mm)
 colnames(penguins)
+```
+
+
+When we just want to change the name of a column, we can use the `rename`
+function in `dplyr`:
+
+```
+dplyr::rename(data, New_column_name1 = Old_column_name1, New_column_name2 = Old_column_name2, ...)
+```
+
+For example, we could change the name of some variables to remove the units
+(probably not recommended in general, but it serves as an example):
+
+```{r}
+penguins_renamed <- dplyr::rename(penguins,
+                                  bill_length = bill_length_mm,
+                                  bill_depth = bill_depth_mm,
+                                  flipper_length = flipper_length_mm,
+                                  body_mass = body_mass_g
+                                  )
+colnames(penguins_renamed)
 ```
 
 

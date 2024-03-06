@@ -241,6 +241,20 @@ have the new column, we need to overwrite it:
 
 ```
 
+When we just want to change the name of a column, we can use the `rename`
+function in `dplyr`:
+
+```
+dplyr::rename(data, New_column_name1 = Old_column_name1, New_column_name2 = Old_column_name2, ...)
+```
+
+For example, we could change the name of some variables to remove the units
+(probably not recommended in general, but it serves as an example):
+
+```{r}
+
+```
+
 
 ### Exercise: creating variables
 

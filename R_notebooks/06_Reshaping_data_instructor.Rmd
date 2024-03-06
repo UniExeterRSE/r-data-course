@@ -44,7 +44,7 @@ In the emissions data above, notice how each column other than 'Year'
 corresponds to a region of the world (or the category 'Bunkers'):
 
 ```{r}
-
+colnames(emissions)
 ```
 
 This is not in tidy format. The observations correspond to year-region pairs,
@@ -90,7 +90,12 @@ names in `emissions` from 'World' to 'Bunkers'. The values from these columns
 are put into a new column called 'Territorial_emissions'.
 
 ```{r}
+emissions_tidy <- emissions |>
+  tidyr::pivot_longer(World:Bunkers,  # All columns from 'World' to 'Bunkers'
+                      names_to = "Region",
+                      values_to = "Territorial_emissions")
 
+print(emissions_tidy)
 ```
 
 Notice how each row corresponds to a year-region pair. The
@@ -102,10 +107,11 @@ the number of years, as we'd expect:
 
 ```{r}
 # Number of rows in tidy dataframe
+cat("Number of rows in emissions_tidy:", nrow(emissions_tidy), "\n")
 
 # Number of year-region pairs
 # (Use ncol(emissions) - 1 so not to include the year column)
-
+cat("Number of year-region pairs:", length(emissions$Year) * (ncol(emissions) - 1), "\n")
 ```
 
 In general, `pivot_longer` is called such because it make the table of data
@@ -167,7 +173,8 @@ corresponded to columns and the entries gave the emissions for each year-region
 combination.
 
 ```{r}
-
+emissions_tidy |>
+  tidyr::pivot_wider(names_from = Region, values_from = Territorial_emissions)
 ```
 
 

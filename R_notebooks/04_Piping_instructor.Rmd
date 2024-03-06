@@ -121,5 +121,11 @@ Rewrite this code to use the pipe operator instead of storing each intermediate
 dataframe, storing the overall result in a new variable called `summarised`.
 
 ```{r}
+summarised <- penguins |>
+  dplyr::select(year, species, bill_length_mm, bill_depth_mm) |>
+  dplyr::filter(year == 2009) |>
+  dplyr::mutate(bill_ratio = bill_length_mm / bill_depth_mm) |>
+  dplyr::summarise(mean_bill_ratio = mean(bill_ratio, na.rm = TRUE))
 
+print(summarised)
 ```

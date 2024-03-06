@@ -13,16 +13,17 @@ output: html_notebook
 In your data wrangling journey, you will often find yourself wanting to combine
 one dataframe with some kind of supplementary or partner dataframe. In our
 case, we have the penguins and weather data stored separately, but if we ever
-wanted to explore any relationships between them, we'd ideally want it in a
-single dataframe / table. This requires lining up the observations and variables
+wanted to explore any relationships between them, we'd ideally want them in a
+single dataframe. This requires lining up the observations and variables
 in the datasets appropriately, something which is accomplished by performing
 appropriate **joins**.  
   
 The key to joining is to identify the variables by which you want to join the
-data. In other words, which columns in each data are the ones that link them
-together? In some cases these may be one-to-one matches (e.g. ID numbers to IDs
-numbers), or in other cases there is data at different levels that need to be
-lined up.
+data. That is, we want to ask the question: which columns in each data are the
+ones that link them together? In some cases these may be one-to-one matches
+(e.g. ID numbers to IDs numbers), or in other cases there is data at different
+levels that need to be lined up.
+
 
 ### Left joins
 
@@ -38,10 +39,10 @@ dplyr::left_join(data_left, data_right, by = <cols_to_join_on>)
 
 The way `left_join` works is to match up the columns given in the `by` column
 and create a new dataframe by pasting new columns from `data_right` alongside
-the columns from `data_left`. We bring in as many rows from `data_right` as we
-can. The 'left' in `left_join` indicates that we're keeping everything from the
-'left' dataframe (i.e. the first one) and joining the other dataframe onto the
-'left' one.
+the columns from `data_left`. As many rows from `data_right` are brought in as
+possible. The 'left' in `left_join` indicates that we're keeping everything from
+the 'left' dataframe (i.e. the first one) and joining the other dataframe *onto*
+the 'left' one.
 
 It's helpful to use small, toy dataframes to explore how joins work (or remind
 yourself after a period of time away).

@@ -17,7 +17,6 @@ offers some advantages over the base R functions available for performing the
 same task.
 
 
-
 ## Loading data from a csv file
 
 You may have used the R function `read.csv` to load data from a csv file into
@@ -47,11 +46,12 @@ Id,Date,X_variable,Y_variable
 010,2024-02-10,-0.07455295463910701,11.6370557133845
 ```
 
-What we really want to is to read the Id as a string and the Date as a date
+What we really want is to read the Id as a string and the Date as a date
 object.
 
-The `read_csv` from the `readr` package is more 'shouty' about assumptions made
-when parsing the data, and can have better default interpretations. For example:
+The `read_csv` function from the `readr` package is more 'shouty' about
+assumptions made when parsing the data, and can have better default
+interpretations. For example:
 
 ```{r}
 timeseries <- readr::read_csv("./data/timeseries_data.csv")
@@ -60,7 +60,7 @@ timeseries <- readr::read_csv("./data/timeseries_data.csv")
 Notice how it has explicitly told us that
 
 - `Id` is parsed as a string (which is what we wanted!)
-- `Date` is parsed as a date (more about dates later in the course)
+- `Date` is parsed as a date (more about dates later in the course).
 - `X_variable` and `Y_variable` are parsed as doubles, as expected.
 
 In general, it's good practice to be explicit about how we parse data from
@@ -75,11 +75,11 @@ being the column names and values being a _column specifier_,
 
 ```
 readr::read_csv("path/to/data.csv",
-                col_types = list(colA = readr::col_logical(),  # column colA is a boolean
-                                 colB = readr::col_integer(),  # column colB is an integer
-                                 colC = readr::col_double(),  # column colC is a floating point number
+                col_types = list(colA = readr::col_logical(),    # column colA is a boolean
+                                 colB = readr::col_integer(),    # column colB is an integer
+                                 colC = readr::col_double(),     # column colC is a floating point number
                                  colD = readr::col_character(),  # column colD is a string
-                                 colE = readr::col_date(),  # column colE is a date
+                                 colE = readr::col_date(),       # column colE is a date
                                  .default = readr::col_double()  # columns are floating point numbers
                                                                  # unless specified otherwise
                                  ))

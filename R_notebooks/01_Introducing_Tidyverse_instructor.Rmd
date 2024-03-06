@@ -75,14 +75,15 @@ To load the dataset, we just import the `palmerpenguins` package and look at
 the `penguins` object.
 
 ```{r}
-
+library(palmerpenguins)  # loads `penguins` object
+penguins
 ```
 
 If we look closely, we see that the class of `penguins` (i.e. the kind of object
 it is) is a tibble, indicated by the `"tbl_df"` in the output below:
 
 ```{r}
-
+class(penguins)
 ```
 
 

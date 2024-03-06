@@ -72,7 +72,7 @@ where
 -   `<columns-to-gather>` is a specification of the columns that should be
     gathered into a new column.
 -   `names_to` defines the name of the new column to create, whose values will
-    be the names in `<columns-to-tidy>`.
+    be the names in `<columns-to-gather>`.
 -   `values_to` is the name of a new column that contains the values that were
     in the columns `<columns-to-gather>` (i.e. the variable that the original
     data was giving).

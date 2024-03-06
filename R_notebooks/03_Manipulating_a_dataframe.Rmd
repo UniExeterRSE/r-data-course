@@ -310,7 +310,8 @@ differences across groups. For instance, does flipper length differ by species?
 Does body mass change between years?
 
 First, we can use `summarise` on its own, without any grouping, to get a single
-summary about the dataframe. Here are some examples using the body mass variable:
+summary about the dataframe. Here are some examples using the flipper length
+variable:
 
 ```{r}
 # Count number of observations
@@ -379,7 +380,8 @@ penguins_grouped <- dplyr::group_by(penguins, species, sex)
 dplyr::summarise(penguins_grouped,
                  mean_body_mass_g = mean(body_mass_g, na.rm = TRUE),
                  sd_body_mass_g = sd(body_mass_g, na.rm = TRUE),
-                 range_body_mass_g = max(body_mass_g, na.rm = TRUE) - min(body_mass_g, na.rm = TRUE))
+                 range_body_mass_g = max(body_mass_g, na.rm = TRUE) - min(body_mass_g, na.rm = TRUE),
+                 Grouping_count = dplyr::n())
 ```
 
 
@@ -408,7 +410,7 @@ penguins_grouped_mass <- dplyr::summarise(penguins_grouped,
                                           mean_body_mass_g = mean(body_mass_g, na.rm = TRUE))
 print(penguins_grouped_mass)
 
-# Max of the average mass for each species
+# Max of the average mass over species, for each sex
 penguins_max_species_avg_mass <- dplyr::summarise(
   penguins_grouped_mass,
   max_species_avg_body_mass_g = max(mean_body_mass_g, na.rm = TRUE)
@@ -417,7 +419,8 @@ print(penguins_max_species_avg_mass)
 ```
 
 In practice, you don't have to worry about this detail. If you want to get back
-to a plain old tibble/dataframe, use the `dplyr::ungroup` function.
+to a plain old tibble/dataframe, use the `dplyr::ungroup` function on a grouped
+dataframe.
 
 
 ## Acknowledgement

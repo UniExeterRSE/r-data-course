@@ -65,8 +65,8 @@ Notice how it has explicitly told us that
 
 In general, it's good practice to be explicit about how we parse data from
 files, rather than assuming the defaults will work. For example, we've no way of
-knowing whether in the future the `readr` package maintainers will decide in the
-future to interpret padded numbers as in the `Id` column as integers.
+knowing whether the `readr` package maintainers will decide in the future to
+interpret padded numbers as in the `Id` column as integers.
 
 We can be explicit about how columns are parsed by using the `col_types`
 optional argument. The general way to do this is to supply a list with names

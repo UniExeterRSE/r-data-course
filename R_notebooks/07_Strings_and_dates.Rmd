@@ -55,7 +55,7 @@ experiments <- readr::read_csv("./data/heads_and_tales.csv")
 experiments
 ```
 
-We'll some of the functions in `stringr` to clean up this dataset.
+We'll use some of the functions in `stringr` to clean up this dataset.
 
 
 ### Cleaning whitespace
@@ -229,7 +229,7 @@ stringr::str_c("foo", "bar", "baz", sep = " -- ")  # foo -- bar -- baz
 
 ### Exercise: splitting and concatenating columns
 
-Use `tidyr::separate` and `stringr:str_c` to create a unique experiment ID by
+Use `tidyr::separate` and `stringr::str_c` to create a unique experiment ID by
 pasting together:
 
 - The experiment date
@@ -368,9 +368,9 @@ class(date_vector)
 ```
 
 Remember that manipulating a column does not mean it automatically saves into
-the dataframe. Instead, we need to remember to write (or overwrite) that column
-into our dataframe. Remember that we can use the mutate function to do this,
-where we can overwrite out date column:
+the dataframe. Instead, we need to explicitly overwrite our dataframe with a
+new dataframe that contains the modified column. Remember that we can use the
+mutate function to achieve this:
 
 ```{r}
 weather <- weather |>

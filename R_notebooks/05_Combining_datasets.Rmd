@@ -140,10 +140,11 @@ df2 |>
   dplyr::left_join(df1, by = "colA")
 ```
 
+
 #### Warning about doubles
 
 It's generally not a good idea to join on a 'by' column (or columns)
-that contain doubles. This is because matching in the join will be done
+that are of type double. This is because matching in the join will be done
 by an exact equality test on the doubles, which can create strange
 results due to numerical imprecision and be difficult to reproduce. Example: in
 the following, two doubles that look distinct are considered equal to

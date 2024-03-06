@@ -14,16 +14,16 @@ output: html_notebook
 The Tidyverse packages are built around a philosophy of having functions that
 work well together. Let's look at some of the functions we've seen so far:
 
-| Package | Function    | Data input type | Output type       |
-|---------|-------------|-----------------|-------------------|
-| `tidyr` | `read_csv`  | string          | dataframe         |
-| `dplyr` | `filter`    | dataframe       | dataframe         |
-| `dplyr` | `select`    | dataframe       | dataframe         |
-| `dplyr` | `mutate`    | dataframe       | dataframe         |
-| `dplyr` | `relocate`  | dataframe       | dataframe         |
-| `dplyr` | `arrange`   | dataframe       | dataframe         |
-| `dplyr` | `summarise` | dataframe       | dataframe         |
-| `dplyr` | `group_by`  | dataframe       | grouped dataframe |
+| Package | Function    | Data input type               | Output type                   |
+|---------|-------------|-------------------------------|-------------------------------|
+| `tidyr` | `read_csv`  | string                        | dataframe                     |
+| `dplyr` | `filter`    | dataframe                     | dataframe                     |
+| `dplyr` | `select`    | dataframe                     | dataframe                     |
+| `dplyr` | `mutate`    | dataframe                     | dataframe                     |
+| `dplyr` | `relocate`  | dataframe                     | dataframe                     |
+| `dplyr` | `arrange`   | dataframe                     | dataframe                     |
+| `dplyr` | `summarise` | dataframe / grouped dataframe | dataframe / grouped dataframe |
+| `dplyr` | `group_by`  | dataframe                     | grouped dataframe             |
 
 Notice how consistent these are in accepting a dataframe as input and returning
 a dataframe (or something like a dataframe). It is this consistency that makes
@@ -67,12 +67,11 @@ We can now chain multiple pipe calls together, like so:
 data |> dplyr::select(colA, colB) |> dplyr::filter(colA > 10)
 ```
 
-The result of the whole of the expression to the right of the assignment `<-`
-gets stored in the `transformed_data`. In words, the above
+In words, the above expression
 
-1. Takes a variable `data`
-2. Selects columns `colA` and `colB`
-3. Takes the result of 2. and filters it to keep rows where `colA > 10`
+1. takes a variable `data`, then
+2. selects columns `colA` and `colB`, then
+3. takes the result of 2 and filters it to keep rows where `colA > 10`,
 
 
 Usually, to make it easier to read, people will put successive pipe calls

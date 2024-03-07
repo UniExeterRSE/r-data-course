@@ -30,7 +30,15 @@ on during the sessions and make sure you have the following installed on it
   <a href="https://rstudio.github.io/renv/" target="_blank" rel="external noreferrer">renv</a>,
   then you are of course free to use this.)
 
-Finally, you will also need to **download the course materials**. These will be
-made available from this page by Monday 11 March 2024 at the latest.
+Finally, you will also need to **download the course materials**:
 
+- Zip archive: [course_materials.zip]({{ site.url }}/assets/materials/course_materials.zip)
+- Tar gzip archive: [course_materials.tar.gz]({{ site.url }}/assets/materials/course_materials.tar.gz)
 
+These contain R notebooks and datasets that will be worked through in the course
+sessions. The notebooks are designed to work with the relative directory
+structure in the archives, so it's best not to change this structure! We suggest
+you place the archive in a directory specifically for this course and then
+unpack the contents within this directory. You will also find an R project file
+`Working_with_data_in_R.Rproj`: double-clicking on this should open RStudio at
+the correct directory containing all the notebooks.

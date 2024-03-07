@@ -23,6 +23,7 @@ on during the sessions and make sure you have the following installed on it
   - `tidyverse`
   - `palmerpenguins` (This contains a dataset we'll use in examples during the
     course.)
+  - `readxl`
   
   If you need a refresher on installing R packages, consult the
   [resources page]({{ site.url }}/resources.html). (Note: if you use a package

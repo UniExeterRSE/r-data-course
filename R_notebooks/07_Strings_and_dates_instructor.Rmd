@@ -52,7 +52,9 @@ The data is not in a clean state:
 
 ```{r}
 # Note: reading all columns as strings
-
+experiments <- readr::read_csv("./data/heads_and_tales.csv",
+                               col_types = list(.default = readr::col_character()))
+experiments
 ```
 
 We'll use some of the functions in `stringr` to clean up this dataset.
@@ -66,14 +68,18 @@ package to do this:
 
 ```{r}
 # Rename columns to *_raw
-
+experiments <- experiments |>
+  dplyr::rename(Experiment_raw = Experiment,
+                Technician_raw = Technician,
+                Result_raw = Result)
+print(colnames(experiments))
 ```
 
 Let's first tackle cleaning up the technician's names. Look at the unique values
 in the 'Technician_raw' column:
 
 ```{r}
-
+unique(experiments$Technician_raw)
 ```
 
 Let's make the case consistent. There are several `stringr` functions we could
@@ -81,16 +87,19 @@ use for this, of the form `str_to_*`
 
 ```{r}
 name <- "aLbErt EinStEin"
-  # lower case
-  # upper case
-  # title case
-  # sentence case
+print(stringr::str_to_lower(name))  # lower case
+print(stringr::str_to_upper(name))  # upper case
+print(stringr::str_to_title(name))  # title case
+print(stringr::str_to_sentence(name))  # sentence case
 ```
 Let's convert the technicians' names to title case. Do we now have consistent
 names for Joe and Jane?
 
 ```{r}
+experiments <- experiments |>
+  dplyr::mutate(Technician = stringr::str_to_title(Technician_raw))
 
+unique(experiments$Technician)
 ```
 
 Not quite. We can replace the two spaces in the middle of "Joe  Bloggs" with a
@@ -98,7 +107,10 @@ single space by using `stringr::str_squish`:
 
 ```{r}
 # Remove repeated whitespace characters
+experiments <- experiments |>
+  dplyr::mutate(Technician = stringr::str_squish(Technician))
 
+unique(experiments$Technician)
 ```
 
 Note that a closely related `stringr` function, `str_trim`, can be used for only
@@ -108,7 +120,8 @@ all the whitespace between the words:
 ```{r}
 # \t = tab character, \n = new line character
 name <- "\tAda    Lovelace  \n"
-
+cat(name)
+cat(stringr::str_trim(name))
 ```
 
 
@@ -126,10 +139,10 @@ In general, to perform text replacement, we can use one of the following
 vowels = "a--e--i--o--u"
 
 # Replace the *first* instance of "--" with ", "
-
+print(stringr::str_replace(vowels, pattern = "--", replacement = ", "))  # a, e--i--o--u
 
 # Replace *all* instances of "--" with  ", "
-
+print(stringr::str_replace_all(vowels, pattern = "--", replacement = ", "))  # a, e, i, o, u
 ```
 
 You may wonder why the parameter name 'pattern' is used for the string we want
@@ -139,8 +152,11 @@ to match on. We'll come back to this.
 Let's now clean up the 'Result' column by removing the commas:
 
 ```{r}
-# Remove commas i.e. replace with empty string
+experiments <- experiments |>
+  dplyr::mutate(Result = stringr::str_replace_all(Result_raw, ",", ""))
 
+experiments |>
+  dplyr::select(Result_raw, Result)
 ```
 
 
@@ -151,7 +167,11 @@ recorded as "<date>:part <n>" where "<date>" is a date string and "<n>" is a
 number 1, 2, etc.
 
 ```{r}
+experiments <- experiments |>
+  dplyr::mutate(Experiment = stringr::str_replace(Experiment_raw, " part", ":part"))
 
+experiments |>
+  dplyr::select(Experiment_raw, Experiment)
 ```
 
 
@@ -161,7 +181,8 @@ With the columns cleaned up, we no longer need the 'raw' columns, so let's
 remove them:
 
 ```{r}
-
+experiments <- experiments |>
+  dplyr::select(-Experiment_raw, -Technician_raw, -Result_raw)
 ```
 
 It would be good to have the 'Experiment' column consist of a unique identifier
@@ -207,7 +228,7 @@ To paste columns back together with a custom separator, we can use the
 `str_c` function from `stringr`:
 
 ```{r}
-
+stringr::str_c("foo", "bar", "baz", sep = " -- ")  # foo -- bar -- baz
 ```
 
 
@@ -229,7 +250,14 @@ Hint: don't try to do this all in one go. Instead, build it up step-by-step and
 use the pipe operator `|>` join the steps together.
 
 ```{r}
-
+experiments |>
+  tidyr::separate(col = Experiment,
+                  into = c("Experiment_date", "Sub_experiment"),
+                  sep = ":part ") |>  # don't forget the space!
+  dplyr::mutate(Experiment_id = stringr::str_c(Experiment_date,
+                                               Sub_experiment,
+                                               stringr::str_remove(Technician, " "),
+                                               sep = ":"))
 ```
 
 
@@ -290,7 +318,10 @@ work out how many experiments feature a run of at least 5 straight heads or 5
 straight tails.
 
 ```{r}
-
+experiments |>
+  dplyr::mutate(Has_run_of_5 = stringr::str_detect(Result, pattern = "HHHHH|TTTTT")) |>
+  dplyr::filter(Has_run_of_5) |>
+  nrow()
 ```
 
 ## Working with dates
@@ -309,7 +340,8 @@ dates, and so it may be hard to manipulate them any further (e.g. extracting
 certain years).
 
 ```{r}
-
+head(weather$Date)
+class(weather$Date)
 ```
 
 (**Note**: if we'd used `read_csv` from the `readr` package then these would
@@ -336,7 +368,8 @@ it converts characters to dates. If we use this function and assign the output
 to a date vector, we can then evaluate the class to see that it is a date.  
 
 ```{r}
-
+date_vector <- lubridate::ymd(weather$Date)
+class(date_vector)
 ```
 
 Remember that manipulating a column does not mean it automatically saves into
@@ -346,7 +379,10 @@ to achieve this:
 
 ```{r}
 # Change the Date column to be a date type
+weather <- weather |>
+  dplyr::mutate(Date = lubridate::ymd(Date))
 
+class(weather$Date)
 ```
 
 
@@ -359,7 +395,11 @@ and that element of the date will be extracted. For example:
 
 ```{r}
 # Extract the year
+weather <- weather |>
+  dplyr::mutate(Year = lubridate::year(Date))
 
+head(weather) |>
+  dplyr::select(Date, Year)
 ```
 
 
@@ -369,6 +409,12 @@ Create a summary of the weather data that gives the maximum, minimum, and
 mean of the average temperatures for each **month** of the year.
 
 ```{r}
+weather |>
+  dplyr::mutate(Month = lubridate::month(Date)) |>
+  dplyr::group_by(Month) |> 
+  dplyr::summarize(Average_temp = mean(Temperature.Average..C., na.rm = TRUE),
+                   Max_temp = max(Temperature.High..C., na.rm = TRUE),
+                   Min_temp = min(Temperature.Low..C., na.rm = TRUE))
 
 ```
 

@@ -1,0 +1,12 @@
+<div class="topnav">
+  <a href="{{ site.url }}">Home</a>
+  <a href="{{ site.url }}/code.html">Code of Conduct</a>
+  <a href="{{ site.url }}/schedule.html">Schedule</a>
+  <a href="{{ site.url }}/setup.html">Installation Guide</a>
+  {% if site.notes_on %}
+  <a href="{{ site.url }}/contents.html">Course Notes</a>
+  {% else %}
+  <a href="{{ site.url }}/contents_off.html">Course Notes</a>
+  {% endif %}
+  <a href="{{ site.url }}/resources.html">Resources</a>
+</div>

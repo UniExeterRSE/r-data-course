@@ -66,23 +66,22 @@ Registration for this course is handled by
 ## Set-up instructions for attendees
 
 If you have registered for this course you can find the
-[instructions for setting up your computer here]({{ site.url }}/setup.html). Also take a look
-at [additional resources and supplementary material]({{ site.url }}/resources.html) for the
-course.
+[instructions for setting up your computer and the course materials here]({{ site.url }}/setup.html).
+Also take a look at [additional resources and supplementary material]({{site.url }}/resources.html) for the course.
 
 
 ## Course notes
 
 {% if site.notes_on %}
 If you are unable to attend any of the dates above, the
-<a href="{{ site.url }}/contents.html">course notes</a> are freely available
+<a href="{{ site.url }}/contents.html">full course notes</a> are freely available
 for you to work through. Please note that you will need to have completed the
 set up instructions linked above.
 {% else %}
 If you are unable to attend any of the dates above, the
-<a href="{{ site.url }}/contents_off.html">course notes</a> are freely available
-for you to work through. Please note that you will need to have completed the
-set up instructions linked above.
+<a href="{{ site.url }}/contents_off.html">full course notes</a> will be made freely
+available for you to work through after the sessions. Please note that you will
+need to have completed the set up instructions linked above.
 {% endif %}
 
 

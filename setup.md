@@ -31,7 +31,8 @@ on during the sessions and make sure you have the following installed on it
   <a href="https://rstudio.github.io/renv/" target="_blank" rel="external noreferrer">renv</a>,
   then you are of course free to use this.)
 
-Finally, you will also need to **download the course materials**:
+Finally, you will also need to **download the course materials** (select
+whichever archive format works best for you):
 
 - Zip archive: [course_materials.zip]({{ site.url }}/assets/materials/course_materials.zip)
 - Tar gzip archive: [course_materials.tar.gz]({{ site.url }}/assets/materials/course_materials.tar.gz)

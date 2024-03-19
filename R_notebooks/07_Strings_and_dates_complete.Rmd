@@ -163,7 +163,7 @@ experiments |>
 ### Exercise: replacing strings
 
 Put the 'Experiment' column into a consistent format, so that the experiment is
-recorded as "<date>:part <n>" where "<date>" is a date string and "<n>" is a
+recorded as `<date>:part <n>` where `<date>` is a date string and `<n>` is a
 number 1, 2, etc.
 
 ```{r}
@@ -266,6 +266,7 @@ experiments |>
 How many of the experiments features a run of 5 heads or 5 tails?
 
 We can answer this as follows:
+
 - For each row, determine whether it contains a run of 5 heads or 5 tails.
 - Filter on the result.
 

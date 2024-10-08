@@ -1,3 +1,7 @@
+# Repository Archived and Outdated
+
+This repository is no longer maintained and has been succeeded by the new [CfRR website](https://coding-for-reproducible-research.github.io/CfRR_Courses/programme_information/working_with_data_in_r.html). All relevant content has been migrated, and the original URL now redirects to the updated site. 
+
 # Working with Data in R
 
 This repository contains source code for the [Working with data in R](https://uniexeterrse.github.io/r-data-course/)
